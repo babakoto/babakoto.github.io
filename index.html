@@ -8,6 +8,19 @@
     <video></video>
   </div>
 
+  <button id="myButton">Cliquez ici</button>
+
+<script>
+  // Sélectionnez l'élément avec son ID
+  var myButton = document.getElementById('myButton');
+  var count = 0;
+
+  // Ajoutez l'événement onclick
+  myButton.addEventListener('click', function() {
+    count = count+1;
+    alert('Le bouton a été cliqué !'+ count);
+  });
+</script>
   <script src="https://cdn-player.hexaglobe.net/equidia/main/hexa-player-latest.js"></script>
   <script>
   async function init() {
