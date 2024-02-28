@@ -1,30 +1,36 @@
-
-
 <html>
 <head>
-   <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
+  <link href="https://vjs.zencdn.net/7.19.2/video-js.css" rel="stylesheet" />
 </head>
 
 <body>
-   <video
-      id="my-video"
-      class="video-js vjs-big-play-centered vjs-theme-sea"
-      controls
-      preload="auto"
-      fluid="true"
-      poster="https://www.tutorialspoint.com/videos/sample.png"
-      data-setup='{}'
-      >
-      <source src="https://private3-stream-ovp.vide.io/dl/3ac3e1ce5b48722e1788345151461fe2/65ddfeb3/equidia_2752987/videos/hls/99/35/S749935/V800035/playlist.m3u8" type="application/x-mpegURL">
-   </video>
+  <video
+    id="my-video"
+    class="video-js vjs-big-play-centered vjs-theme-sea"
+    controls
+    preload="auto"
+    fluid="true"
+    poster="https://www.tutorialspoint.com/videos/sample.png"
+    data-setup='{}'
+  >
+    <source src="https://private3-stream-ovp.vide.io/dl/3ac3e1ce5b48722e1788345151461fe2/65ddfeb3/equidia_2752987/videos/hls/99/35/S749935/V800035/playlist.m3u8" type="application/x-mpegURL">
+  </video>
 
-   <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-   <script src="https://unpkg.com/videojs-contribhls/dist/videojs-contrib-hls.js"></script>
+  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+  <script src="https://unpkg.com/videojs-contribhls/dist/videojs-contrib-hls.js"></script>
 
-   <script>
-   var player = videojs('my-video');
-   </script>
+  <script>
+    var player = videojs('my-video');
+
+    // Event listener for the "play" event
+    player.on('play', function() {
+      // Check if the player is already in fullscreen mode
+      if (document.fullscreenElement) {
+        // Exit fullscreen if it is
+        document.exitFullscreen();
+      }
+    });
+  </script>
 
 </body>
 </html>
-
