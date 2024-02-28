@@ -11,6 +11,7 @@
   <button id="myButton">Cliquez ici</button>
 
 <script>
+  window.flutter_inappwebview.callHandler('myCount', count);
   // Sélectionnez l'élément avec son ID
   var myButton = document.getElementById('myButton');
   var count = 0;
