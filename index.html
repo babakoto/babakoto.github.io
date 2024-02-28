@@ -5,36 +5,26 @@
 </head>
 
 <body>
-  <video
-    id="my-video"
-    class="video-js vjs-big-play-centered vjs-theme-sea"
-    controls
-    preload="auto"
-    fluid="true"
-    data-setup='{}'
-  >
-    <source src="https://equidia-racingmag-p32-cdn.hexaglobe.net/83a07e43372c54c11b72daecc135e73d/65defaa6/equidia/equidia-mobileapp-ios-1/eqdracingmagbkp_fre.smil/playlist.m3u8">
-  </video>
+ <iframe src="https://bradmax.com/client/embed-player/a75680a661c3aa3e5137f6923513738c12dae3e2_3496?mediaUrl=https%3A%2F%2Fbradmax.com%2Fstatic%2Fvideo%2Ftos%2F440272.m3u8&title=Tears%20of%20steel&duration=734.097415&splashImgUrl=https%3A%2F%2Fbradmax.com%2Fstatic%2Fimages%2Fstartsplash.jpg" width="600" height="400" frameBorder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-  <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-  <script src="https://unpkg.com/videojs-contribhls/dist/videojs-contrib-hls.js"></script>
 
-  <script>
-    var player = videojs('my-video');
+ <script src="https://bradmax.com/client/files/player-js/73a9716fd26717763cd2d46fb9e41463645853de_14815/bradmax_player.js" ></script>
+<div style="width: 890px; height: 500px; background: black;" id="PLAYER_DOM_ID"></div>
+<script type="text/javascript">
+    var config = {
+        dataProvider: {
+            source: [
+                { url: "https://equidia-racingmag-p32-cdn.hexaglobe.net/83a07e43372c54c11b72daecc135e73d/65defaa6/equidia/equidia-mobileapp-ios-1/eqdracingmagbkp_fre.smil/playlist.m3u8" }
+            ]
+        }
+    };
 
-    // Event listener for the "play" event
-    player.on('play', function() {
-      // Check if the player is already in fullscreen mode
-      if (document.fullscreenElement) {
-        // Exit fullscreen if it is
-        document.exitFullscreen();
-      }
-    });
-  </script>
-  <script> 
-    
+    /** find player container in html DOM tree. */
+    var element = document.getElementById("PLAYER_DOM_ID");
 
-   </script>
+    /** create player */
+    var player = window.bradmax.player.create(element, config);
+</script>
 
 </body>
 </html>
