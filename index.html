@@ -1,49 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appel API Equidia</title>
+  <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
 </head>
+
 <body>
-    <script>
-        // Fonction pour effectuer la requête HTTP GET
-        function callEquidiaAPI() {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://api.equidia.fr/api/public/racing/directs/live2/hls?urlOnly=true', true);
-            xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader('Referer', 'https://www.equidia.fr/');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    processResponse(response);
-                }
-            };
-            xhr.send();
-        }
+  <div id="liveContainer">
+    <video></video>
+  </div>
 
-        // Fonction pour traiter la réponse
-        function processResponse(response) {
-            // Code pour intégrer la réponse dans le HTML
-            const parameterEquidia = {
-                idDivContainer: 'liveContainer',
-                UrlStreamInfo: response.url, // Supposant que la réponse contient un objet avec une propriété 'url'
-                titleVideo: "live2",
-            };
+  <script src="https://cdn-player.hexaglobe.net/equidia/main/hexa-player-latest.js"></script>
+  <script>
+  async function init() {
+    const response = await fetch('https://api.equidia.fr/api/public/racing/directs/live2/hls?urlOnly=true', {
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+        'Referer': 'https://www.equidia.fr/'
+      }
+    });
 
-            hexaplayerNamespace.initPlayerLive(parameterEquidia);
-        }
+    const parameterEquidia = {
+      idDivContainer: 'liveContainer',
+      UrlStreamInfo: response.url,
+      titleVideo: "live2",
+    };
+    hexaplayerNamespace.initPlayerLive(parameterEquidia);
+  }
 
-        // Appeler la fonction lorsque la page est chargée
-        window.onload = function() {
-            callEquidiaAPI();
-        };
-    </script>
-    <div id="liveContainer">
-        <video></video>
-    </div>
-    <!-- Assurez-vous que le script pour le lecteur vidéo est inclus ici -->
-    <script src="cdn-player.hexaglobe.net/equidia/main/hexa-player-latest.js"></script>
+  setTimeout(() => {
+    init();
+  }, 1000);
+  </script>
 </body>
-</html>
